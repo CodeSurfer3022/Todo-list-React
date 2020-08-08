@@ -1,17 +1,25 @@
 import React from 'react';
 import './index.css';
 import Todo from './Todo';
-import Todos from './todosData';
+import todosData from './todosData';
 
-function App() {
-    const todoComponents = Todos.map(todo => <Todo key={todo.id}
-                                                           completed={todo.completed}
-                                                           text={todo.text}/>);
-    return(
-        <div className="note">
-            {todoComponents}
-        </div>
-    )
+class App extends React.Component{
+    constructor() {
+        super();
+        this.state = {
+            todos: todosData
+        }
+    }
+    render() {
+        const todoComponents = this.state.todos.map(todo => <Todo key={todo.id}
+                                                       completed={todo.completed}
+                                                       text={todo.text}/>);
+        return (
+            <div className="note">
+                {todoComponents}
+            </div>
+        )
+    }
 }
 
 export default App;

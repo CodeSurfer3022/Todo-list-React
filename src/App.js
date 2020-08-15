@@ -11,13 +11,15 @@ class App extends React.Component{
         }
     }
     handleChange(id) {
-        const updatedTodos = this.state.todos.map(todo => {
-            if(todo.id === id) {
-                todo.completed = !todo.completed;
-            }
-            return todo;
-        })
-        this.setState({todos: updatedTodos});
+        this.setState((prevState) => {
+            const updatedTodos = prevState.todos.slice().map(todo => {
+                if(todo.id === id) {
+                    todo.completed = !todo.completed;
+                }
+                return todo;
+            })
+            return {todos: updatedTodos};
+        });
     }
     render() {
         const todoComponents = this.state.todos.map(todo => <TodoItem
